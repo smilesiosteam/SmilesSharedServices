@@ -26,6 +26,7 @@ public struct SectionDetailDO: Codable {
     public var subTitle: String?
     public var searchTag: String?
     public var pickupRibbonText: String?
+    public var backgroundImage: String?
     
     public init() {}
     
