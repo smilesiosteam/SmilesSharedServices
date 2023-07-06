@@ -29,6 +29,7 @@ public class SectionsViewModel: NSObject {
 
 // MARK: - INPUT. View event methods
 extension SectionsViewModel {
+    
     public func transform(input: AnyPublisher<Input, Never>) -> AnyPublisher<Output, Never> {
         output = PassthroughSubject<Output, Never>()
         input.sink { [weak self] event in
@@ -41,7 +42,7 @@ extension SectionsViewModel {
     }
     
     // Get All Sections
-    public func getSections(for categoryID: Int, baseUrl: String, isGuestUser: Bool) {
+    private func getSections(for categoryID: Int, baseUrl: String, isGuestUser: Bool) {
         let getSectionssRequest = GetSectionsRequestModel(
             categoryId: categoryID,
             isGuestUser: isGuestUser
@@ -67,4 +68,5 @@ extension SectionsViewModel {
             }
         .store(in: &cancellables)
     }
+    
 }

@@ -2,67 +2,68 @@
 //  File.swift
 //  
 //
-//  Created by Abdul Rehman Amjad on 04/07/2023.
+//  Created by Abdul Rehman Amjad on 06/07/2023.
 //
 
 import Foundation
 import Combine
 import NetworkingLayer
-import SmilesLocationHandler
-import SmilesUtilities
 
-public class RewardPointsViewModel: NSObject {
+public class FAQsViewModel: NSObject {
     
     // MARK: - INPUT. View event methods
     public enum Input {
-        case getRewardPoints(baseUrl: String)
+        case getFAQsDetails(faqId: Int, baseUrl: String)
     }
     
     public enum Output {
-        case fetchRewardPointsDidSucceed(response: RewardPointsResponseModel, shouldLogout: Bool?)
-        case fetchRewardPointsDidFail(error: Error)
+        case fetchFAQsDidSucceed(response: FAQsDetailsResponse)
+        case fetchFAQsDidFail(error: Error)
     }
     
     // MARK: -- Variables
     private var output: PassthroughSubject<Output, Never> = .init()
     private var cancellables = Set<AnyCancellable>()
+    
 }
 
-extension RewardPointsViewModel {
+// MARK: - INPUT. View event methods
+extension FAQsViewModel {
     
     public func transform(input: AnyPublisher<Input, Never>) -> AnyPublisher<Output, Never> {
         output = PassthroughSubject<Output, Never>()
         input.sink { [weak self] event in
             switch event {
-            case .getRewardPoints(let baseUrl):
-                self?.getRewardPoints(baseUrl: baseUrl)
+            case .getFAQsDetails(let faqId, let baseUrl):
+                self?.getFAQsDetails(for: faqId, baseUrl: baseUrl)
             }
         }.store(in: &cancellables)
         return output.eraseToAnyPublisher()
     }
     
-    private func getRewardPoints(baseUrl: String) {
-        let rewardPointsRequest = RewardPointsRequestModel(isIntgParamRequired: false)
+    private func getFAQsDetails(for faqId: Int, baseUrl: String) {
         
-        let service = GetRewardPointsRepository(
+        let getFAQsRequest = FAQsDetailsRequest(
+            faqId: faqId
+        )
+        
+        let service = GetFAQsRepository(
             networkRequest: NetworkingLayerRequestable(requestTimeOut: 60),
             baseUrl: baseUrl
         )
         
-        service.getRewardPointsService(request: rewardPointsRequest)
+        service.getFAQsService(request: getFAQsRequest)
             .sink { [weak self] completion in
                 debugPrint(completion)
                 switch completion {
                 case .failure(let error):
-                    self?.output.send(.fetchRewardPointsDidFail(error: error))
+                    self?.output.send(.fetchFAQsDidFail(error: error))
                 case .finished:
                     debugPrint("nothing much to do here")
                 }
             } receiveValue: { [weak self] response in
-                self?.output.send(.fetchRewardPointsDidSucceed(response: response, shouldLogout: nil))
+                self?.output.send(.fetchFAQsDidSucceed(response: response))
             }
         .store(in: &cancellables)
     }
-    
 }
-

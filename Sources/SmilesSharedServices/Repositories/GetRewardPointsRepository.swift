@@ -19,7 +19,6 @@ class GetRewardPointsRepository: GetRewardPointsServiceable {
     private var networkRequest: Requestable
     private var baseUrl: String
 
-  // inject this for testability
     init(networkRequest: Requestable, baseUrl: String) {
         self.networkRequest = networkRequest
         self.baseUrl = baseUrl
