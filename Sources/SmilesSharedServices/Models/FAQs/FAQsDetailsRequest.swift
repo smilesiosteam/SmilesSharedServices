@@ -7,8 +7,9 @@
 
 import Foundation
 import SmilesUtilities
+import SmilesBaseMainRequestManager
 
-public class FAQsDetailsRequest : Codable {
+public class FAQsDetailsRequest : SmilesBaseMainRequest {
     
     public var faqId : Int?
     
@@ -17,12 +18,20 @@ public class FAQsDetailsRequest : Codable {
     }
     
     public required init(from decoder: Decoder) throws {
+        super.init()
         let values = try decoder.container(keyedBy: CodingKeys.self)
         faqId = try values.decodeIfPresent(Int.self, forKey: .faqId)
     }
     
     public init(faqId: Int = 1) {
+        super.init()
         self.faqId = faqId
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.faqId, forKey: .faqId)
     }
     
     public func asDictionary(dictionary :[String : Any]) -> [String : Any] {
