@@ -29,6 +29,7 @@ public class FaqsDetail : Codable {
     public let faqContent : String?
     public let faqTitle : String?
     public let id : Int?
+    public var isHidden: Bool?
     
     enum CodingKeys: String, CodingKey {
         case faqContent = "faq_content"
