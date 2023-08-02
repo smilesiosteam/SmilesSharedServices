@@ -11,6 +11,10 @@ public struct GetSectionsResponseModel: Codable {
     
     public var sectionDetails: [SectionDetailDO]?
     
+    public func getEventName(for section: String) -> String? {
+        let section = sectionDetails?.first(where: { $0.sectionIdentifier == section })
+        return section?.eventName
+    }
 }
 public struct SectionDetailDO: Codable {
     
