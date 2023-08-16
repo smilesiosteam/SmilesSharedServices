@@ -32,6 +32,7 @@ public struct SectionDetailDO: Codable {
     public var pickupRibbonText: String?
     public var backgroundImage: String?
     public var eventName: String?
+    public var tag: String?
     
     public init() {}
     
