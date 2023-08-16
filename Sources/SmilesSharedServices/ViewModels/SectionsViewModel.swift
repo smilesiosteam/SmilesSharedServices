@@ -13,7 +13,7 @@ public class SectionsViewModel: NSObject {
     
     // MARK: - INPUT. View event methods
     public enum Input {
-        case getSections(categoryID: Int, baseUrl: String, isGuestUser: Bool)
+        case getSections(categoryID: Int, baseUrl: String, isGuestUser: Bool, tag: String? = nil)
     }
     
     public enum Output {
@@ -34,18 +34,19 @@ extension SectionsViewModel {
         output = PassthroughSubject<Output, Never>()
         input.sink { [weak self] event in
             switch event {
-            case .getSections(let categoryID, let baseUrl, let isGuestUser):
-                self?.getSections(for: categoryID, baseUrl: baseUrl, isGuestUser: isGuestUser)
+            case .getSections(let categoryID, let baseUrl, let isGuestUser, let tag):
+                self?.getSections(for: categoryID, baseUrl: baseUrl, isGuestUser: isGuestUser, tag: tag)
             }
         }.store(in: &cancellables)
         return output.eraseToAnyPublisher()
     }
     
     // Get All Sections
-    private func getSections(for categoryID: Int, baseUrl: String, isGuestUser: Bool) {
+    private func getSections(for categoryID: Int, baseUrl: String, isGuestUser: Bool, tag: String?) {
         let getSectionssRequest = GetSectionsRequestModel(
             categoryId: categoryID,
-            isGuestUser: isGuestUser
+            isGuestUser: isGuestUser,
+            tag: tag
         )
         
         let service = GetSectionsRepository(
