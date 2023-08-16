@@ -54,6 +54,9 @@ public struct RewardPointsResponseModel: Codable {
     public let birthdayPopup: BirthdayPopupObject?
     public let mcfcSubscriptionStatus: Bool?
     public let mcfcWelcomeVideoUrl: String?
+    public let explorerSubscriptionStatus: Bool?
+    public let explorerPackageType: ExplorerPackage?
+    public let explorerVoucherCode: String?
 
     public var profileImagePlaceholder: String{
         if gender == "F"{
@@ -127,6 +130,7 @@ public struct RewardPointsResponseModel: Codable {
         case birthdayPopup
         case mcfcSubscriptionStatus
         case mcfcWelcomeVideoUrl = "welcomeVideoUrl"
+        case explorerSubscriptionStatus, explorerPackageType, explorerVoucherCode
     }
 
     public init(from decoder: Decoder) throws {
@@ -177,9 +181,16 @@ public struct RewardPointsResponseModel: Codable {
         birthdayPopup = try values.decodeIfPresent(BirthdayPopupObject.self, forKey: .birthdayPopup)
         mcfcSubscriptionStatus = try values.decodeIfPresent(Bool.self, forKey: .mcfcSubscriptionStatus)
         mcfcWelcomeVideoUrl = try values.decodeIfPresent(String.self, forKey: .mcfcWelcomeVideoUrl)
+        explorerSubscriptionStatus = try values.decodeIfPresent(Bool.self, forKey: .explorerSubscriptionStatus)
+        explorerPackageType = try values.decodeIfPresent(ExplorerPackage.self, forKey: .explorerPackageType)
+        explorerVoucherCode = try values.decodeIfPresent(String.self, forKey: .explorerVoucherCode)
     }
 }
 
 public enum RewardTierLevel: Int {
     case gold = 0, silver = 4, bronze = 1, none = -1
+}
+
+public enum ExplorerPackage: String, Codable {
+    case gold, platinum
 }
