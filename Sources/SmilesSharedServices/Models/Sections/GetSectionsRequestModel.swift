@@ -14,13 +14,13 @@ public class GetSectionsRequestModel: SmilesBaseMainRequest {
     
     public var categoryId: Int?
     public var isGuestUser: Bool?
-    public var tag: String?
+    public var type: String?
     
     public init(categoryId: Int?, isGuestUser: Bool?, tag: String? = nil) {
         super.init()
         self.categoryId = categoryId
         self.isGuestUser = isGuestUser
-        self.tag = tag
+        self.type = tag
     }
     
     public required init(from decoder: Decoder) throws {
@@ -32,7 +32,7 @@ public class GetSectionsRequestModel: SmilesBaseMainRequest {
     enum CodingKeys: CodingKey {
         case categoryId
         case isGuestUser
-        case tag
+        case type
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -40,6 +40,6 @@ public class GetSectionsRequestModel: SmilesBaseMainRequest {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.categoryId, forKey: .categoryId)
         try container.encodeIfPresent(self.isGuestUser, forKey: .isGuestUser)
-        try container.encodeIfPresent(self.tag, forKey: .tag)
+        try container.encodeIfPresent(self.type, forKey: .type)
     }
 }
