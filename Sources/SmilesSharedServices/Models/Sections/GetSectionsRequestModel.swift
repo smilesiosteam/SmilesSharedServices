@@ -16,11 +16,11 @@ public class GetSectionsRequestModel: SmilesBaseMainRequest {
     public var isGuestUser: Bool?
     public var type: String?
     
-    public init(categoryId: Int?, isGuestUser: Bool?, tag: String? = nil) {
+    public init(categoryId: Int?, isGuestUser: Bool?, type: String? = nil) {
         super.init()
         self.categoryId = categoryId
         self.isGuestUser = isGuestUser
-        self.type = tag
+        self.type = type
     }
     
     public required init(from decoder: Decoder) throws {
