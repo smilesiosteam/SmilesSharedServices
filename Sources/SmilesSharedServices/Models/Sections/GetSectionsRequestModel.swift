@@ -15,12 +15,14 @@ public class GetSectionsRequestModel: SmilesBaseMainRequest {
     public var categoryId: Int?
     public var isGuestUser: Bool?
     public var type: String?
+    public var explorerPackageType: String?
     
-    public init(categoryId: Int?, isGuestUser: Bool?, type: String? = nil) {
+    public init(categoryId: Int?, isGuestUser: Bool?, type: String? = nil, explorerPackageType: String? = nil) {
         super.init()
         self.categoryId = categoryId
         self.isGuestUser = isGuestUser
         self.type = type
+        self.explorerPackageType = explorerPackageType
     }
     
     public required init(from decoder: Decoder) throws {
@@ -33,6 +35,7 @@ public class GetSectionsRequestModel: SmilesBaseMainRequest {
         case categoryId
         case isGuestUser
         case type
+        case explorerPackageType
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -41,5 +44,6 @@ public class GetSectionsRequestModel: SmilesBaseMainRequest {
         try container.encodeIfPresent(self.categoryId, forKey: .categoryId)
         try container.encodeIfPresent(self.isGuestUser, forKey: .isGuestUser)
         try container.encodeIfPresent(self.type, forKey: .type)
+        try container.encodeIfPresent(self.explorerPackageType, forKey: .explorerPackageType)
     }
 }
