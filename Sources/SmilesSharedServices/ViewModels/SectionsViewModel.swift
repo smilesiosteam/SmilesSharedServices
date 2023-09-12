@@ -13,7 +13,7 @@ public class SectionsViewModel: NSObject {
     
     // MARK: - INPUT. View event methods
     public enum Input {
-        case getSections(categoryID: Int, baseUrl: String, isGuestUser: Bool, type: String? = nil)
+        case getSections(categoryID: Int, baseUrl: String, isGuestUser: Bool, type: String? = nil,explorerPackageType: ExplorerPackage? = nil)
     }
     
     public enum Output {
@@ -34,19 +34,20 @@ extension SectionsViewModel {
         output = PassthroughSubject<Output, Never>()
         input.sink { [weak self] event in
             switch event {
-            case .getSections(let categoryID, let baseUrl, let isGuestUser, let type):
-                self?.getSections(for: categoryID, baseUrl: baseUrl, isGuestUser: isGuestUser, type: type)
+            case .getSections(let categoryID, let baseUrl, let isGuestUser, let type, let explorerPackageType):
+                self?.getSections(for: categoryID, baseUrl: baseUrl, isGuestUser: isGuestUser, type: type,explorerPackageType: explorerPackageType)
             }
         }.store(in: &cancellables)
         return output.eraseToAnyPublisher()
     }
     
     // Get All Sections
-    private func getSections(for categoryID: Int, baseUrl: String, isGuestUser: Bool, type: String?) {
+    private func getSections(for categoryID: Int, baseUrl: String, isGuestUser: Bool, type: String?,explorerPackageType: ExplorerPackage?) {
         let getSectionssRequest = GetSectionsRequestModel(
             categoryId: categoryID,
             isGuestUser: isGuestUser,
-            type: type
+            type: type,
+            explorerPackageType: explorerPackageType
         )
         
         let service = GetSectionsRepository(
