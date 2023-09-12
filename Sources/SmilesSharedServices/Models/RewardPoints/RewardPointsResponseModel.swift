@@ -192,5 +192,6 @@ public enum RewardTierLevel: Int {
 }
 
 public enum ExplorerPackage: String, Codable {
-    case gold, platinum
+    case gold = "Gold"
+    case platinum = "Platinum"
 }
