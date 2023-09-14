@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 import NetworkingLayer
-import SmilesSharedServices
+//import SmilesSharedServices
 
 protocol GetOffersFiltersServiceable {
     func getOffersFiltersService(request: OffersFiltersRequestModel) -> AnyPublisher<OffersFiltersResponseModel, NetworkError>
