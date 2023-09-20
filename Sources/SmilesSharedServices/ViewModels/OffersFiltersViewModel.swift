@@ -9,7 +9,6 @@
 import Foundation
 import Combine
 import NetworkingLayer
-import SmilesSharedServices
 
 
 public class OffersFiltersViewModel: NSObject {
