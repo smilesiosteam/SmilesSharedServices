@@ -13,7 +13,7 @@ public class SectionsViewModel: NSObject {
     
     // MARK: - INPUT. View event methods
     public enum Input {
-        case getSections(categoryID: Int, baseUrl: String, isGuestUser: Bool, type: String? = nil,explorerPackageType: ExplorerPackage? = nil)
+        case getSections(categoryID: Int, baseUrl: String, isGuestUser: Bool, type: String? = nil,explorerPackageType: ExplorerPackage? = nil, freeTicketAvailed: Bool? = false)
     }
     
     public enum Output {
@@ -34,20 +34,20 @@ extension SectionsViewModel {
         output = PassthroughSubject<Output, Never>()
         input.sink { [weak self] event in
             switch event {
-            case .getSections(let categoryID, let baseUrl, let isGuestUser, let type, let explorerPackageType):
-                self?.getSections(for: categoryID, baseUrl: baseUrl, isGuestUser: isGuestUser, type: type,explorerPackageType: explorerPackageType)
+            case .getSections(let categoryID, let baseUrl, let isGuestUser, let type, let explorerPackageType, let freeTicketAvailed):
+                self?.getSections(for: categoryID, baseUrl: baseUrl, isGuestUser: isGuestUser, type: type,explorerPackageType: explorerPackageType, freeTicketAvailed:freeTicketAvailed ?? false)
             }
         }.store(in: &cancellables)
         return output.eraseToAnyPublisher()
     }
     
     // Get All Sections
-    private func getSections(for categoryID: Int, baseUrl: String, isGuestUser: Bool, type: String?,explorerPackageType: ExplorerPackage?) {
+    private func getSections(for categoryID: Int, baseUrl: String, isGuestUser: Bool, type: String?,explorerPackageType: ExplorerPackage?,freeTicketAvailed:Bool) {
         let getSectionssRequest = GetSectionsRequestModel(
             categoryId: categoryID,
             isGuestUser: isGuestUser,
             type: type,
-            explorerPackageType: explorerPackageType
+            explorerPackageType: explorerPackageType, freeTicketAvailed: freeTicketAvailed
         )
         
         let service = GetSectionsRepository(
