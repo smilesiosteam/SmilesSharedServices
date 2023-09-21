@@ -183,9 +183,10 @@ public struct RewardPointsResponseModel: Codable {
         mcfcSubscriptionStatus = try values.decodeIfPresent(Bool.self, forKey: .mcfcSubscriptionStatus)
         mcfcWelcomeVideoUrl = try values.decodeIfPresent(String.self, forKey: .mcfcWelcomeVideoUrl)
         explorerSubscriptionStatus = try values.decodeIfPresent(Bool.self, forKey: .explorerSubscriptionStatus)
-        explorerPackageType = try values.decodeIfPresent(ExplorerPackage.self, forKey: .explorerPackageType)
+        explorerPackageType = ExplorerPackage(rawValue: try values.decodeIfPresent(String.self, forKey: .explorerPackageType)?.lowercased() ?? "")
         explorerVoucherCode = try values.decodeIfPresent(String.self, forKey: .explorerVoucherCode)
         freeTicketAvailed = try values.decodeIfPresent(Bool.self, forKey: .freeTicketAvailed)
+        
     }
 }
 
