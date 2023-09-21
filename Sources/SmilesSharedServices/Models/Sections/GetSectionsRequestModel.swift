@@ -38,6 +38,7 @@ public class GetSectionsRequestModel: SmilesBaseMainRequest {
         case isGuestUser
         case type
         case explorerPackageType
+        case freeTicketAvailed
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -47,6 +48,6 @@ public class GetSectionsRequestModel: SmilesBaseMainRequest {
         try container.encodeIfPresent(self.isGuestUser, forKey: .isGuestUser)
         try container.encodeIfPresent(self.type, forKey: .type)
         try container.encodeIfPresent(self.explorerPackageType, forKey: .explorerPackageType)
-        try container.encodeIfPresent(self.explorerPackageType, forKey: .explorerPackageType)
+        try container.encodeIfPresent(self.freeTicketAvailed, forKey: .freeTicketAvailed)
     }
 }
