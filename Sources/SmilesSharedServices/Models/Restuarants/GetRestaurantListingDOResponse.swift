@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SmilesUtilities
+import SmilesSharedModels
 
 
 public struct GetRestaurantListingDOResponse: Codable {

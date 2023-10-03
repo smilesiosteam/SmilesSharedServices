@@ -19,7 +19,8 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/smilesiosteam/SmilesBaseMainRequest.git", branch: "shared_models"),
         .package(url: "https://github.com/smilesiosteam/NetworkingLayer.git", branch: "shared_Models"),
-        .package(url: "https://github.com/smilesiosteam/SmilesLocationHandler.git", branch: "main")
+        .package(url: "https://github.com/smilesiosteam/SmilesLocationHandler.git", branch: "shared_Models"),
+        .package(url: "https://github.com/smilesiosteam/SmilesSharedModels.git", branch: "main")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -29,7 +30,8 @@ let package = Package(
             dependencies: [
                 .product(name: "SmilesBaseMainRequestManager", package: "SmilesBaseMainRequest"),
                 .product(name: "NetworkingLayer", package: "NetworkingLayer"),
-                .product(name: "SmilesLocationHandler", package: "SmilesLocationHandler")
+                .product(name: "SmilesLocationHandler", package: "SmilesLocationHandler"),
+                .product(name: "SmilesSharedModels", package: "SmilesSharedModels")
             ])
     ]
 )

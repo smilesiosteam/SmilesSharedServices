@@ -8,7 +8,7 @@
 
 import Foundation
 import SmilesBaseMainRequestManager
-import SmilesUtilities
+import SmilesSharedModels
 
 public  class GetRestaurantListingDORequest: SmilesBaseMainRequest {
 

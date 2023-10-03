@@ -50,8 +50,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/smilesiosteam/SmilesAnalytics.git",
       "state" : {
-        "revision" : "e956827dd6ad06a4da00bb99f3c754928fdab0c2",
-        "version" : "1.0.0"
+        "branch" : "main",
+        "revision" : "e956827dd6ad06a4da00bb99f3c754928fdab0c2"
       }
     },
     {
@@ -68,8 +68,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/smilesiosteam/SmilesEasyTipView.git",
       "state" : {
-        "revision" : "c321c738dbd135a8a68f5d09dcaee00220183d50",
-        "version" : "1.0.1"
+        "branch" : "shared_Models",
+        "revision" : "5985e6e7bf27d2b76b390b7af50e2b9c2e7e9fa3"
       }
     },
     {
@@ -95,8 +95,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/smilesiosteam/SmilesLocationHandler.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "346f5faa7803c1d4412162c0bf81e903ce25eaa7"
+        "branch" : "shared_Models",
+        "revision" : "f2c8396268e25997481ab4a78fd36e165f87b637"
       }
     },
     {
