@@ -7,6 +7,7 @@
 
 import Foundation
 import NetworkingLayer
+import SmilesSharedModels
 
 public class FAQsDetailsResponse : BaseMainResponse {
     
