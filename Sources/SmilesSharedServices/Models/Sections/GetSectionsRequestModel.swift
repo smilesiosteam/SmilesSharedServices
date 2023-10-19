@@ -18,7 +18,7 @@ public class GetSectionsRequestModel: SmilesBaseMainRequest {
     public var explorerPackageType: ExplorerPackage?
     public var freeTicketAvailed: Bool?
     
-    public init(categoryId: Int?, isGuestUser: Bool?, type: String? = nil, explorerPackageType: ExplorerPackage? = nil,freeTicketAvailed:Bool?) {
+    public init(categoryId: Int?, isGuestUser: Bool?, type: String? = nil, explorerPackageType: ExplorerPackage? = nil,freeTicketAvailed:Bool? = nil) {
         super.init()
         self.categoryId = categoryId
         self.isGuestUser = isGuestUser
