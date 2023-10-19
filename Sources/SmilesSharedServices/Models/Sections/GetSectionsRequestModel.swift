@@ -13,14 +13,16 @@ public class GetSectionsRequestModel: SmilesBaseMainRequest {
     // MARK: - Model Variables
     
     public var categoryId: Int?
+    public var subCategoryId: Int?
     public var isGuestUser: Bool?
     public var type: String?
     public var explorerPackageType: ExplorerPackage?
     public var freeTicketAvailed: Bool?
     
-    public init(categoryId: Int?, isGuestUser: Bool?, type: String? = nil, explorerPackageType: ExplorerPackage? = nil,freeTicketAvailed:Bool? = nil) {
+    public init(categoryId: Int?, subCategoryId: Int? = nil, isGuestUser: Bool?, type: String? = nil, explorerPackageType: ExplorerPackage? = nil,freeTicketAvailed:Bool? = nil) {
         super.init()
         self.categoryId = categoryId
+        self.subCategoryId = subCategoryId
         self.isGuestUser = isGuestUser
         self.type = type
         self.explorerPackageType = explorerPackageType
@@ -35,6 +37,7 @@ public class GetSectionsRequestModel: SmilesBaseMainRequest {
     
     enum CodingKeys: CodingKey {
         case categoryId
+        case subCategoryId
         case isGuestUser
         case type
         case explorerPackageType
@@ -45,6 +48,7 @@ public class GetSectionsRequestModel: SmilesBaseMainRequest {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.categoryId, forKey: .categoryId)
+        try container.encodeIfPresent(self.subCategoryId, forKey: .subCategoryId)
         try container.encodeIfPresent(self.isGuestUser, forKey: .isGuestUser)
         try container.encodeIfPresent(self.type, forKey: .type)
         try container.encodeIfPresent(self.explorerPackageType, forKey: .explorerPackageType)

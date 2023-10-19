@@ -13,7 +13,7 @@ public class SectionsViewModel: NSObject {
     
     // MARK: - INPUT. View event methods
     public enum Input {
-        case getSections(categoryID: Int, baseUrl: String, isGuestUser: Bool, type: String? = nil,explorerPackageType: ExplorerPackage? = nil, freeTicketAvailed: Bool? = nil)
+        case getSections(categoryID: Int, subCategoryId: Int? = nil, baseUrl: String, isGuestUser: Bool, type: String? = nil,explorerPackageType: ExplorerPackage? = nil, freeTicketAvailed: Bool? = nil)
     }
     
     public enum Output {
@@ -34,17 +34,18 @@ extension SectionsViewModel {
         output = PassthroughSubject<Output, Never>()
         input.sink { [weak self] event in
             switch event {
-            case .getSections(let categoryID, let baseUrl, let isGuestUser, let type, let explorerPackageType, let freeTicketAvailed):
-                self?.getSections(for: categoryID, baseUrl: baseUrl, isGuestUser: isGuestUser, type: type,explorerPackageType: explorerPackageType, freeTicketAvailed:freeTicketAvailed)
+            case .getSections(let categoryID, let subcategoryId, let baseUrl, let isGuestUser, let type, let explorerPackageType, let freeTicketAvailed):
+                self?.getSections(for: categoryID, subCategoryId: subcategoryId, baseUrl: baseUrl, isGuestUser: isGuestUser, type: type,explorerPackageType: explorerPackageType, freeTicketAvailed:freeTicketAvailed)
             }
         }.store(in: &cancellables)
         return output.eraseToAnyPublisher()
     }
     
     // Get All Sections
-    private func getSections(for categoryID: Int, baseUrl: String, isGuestUser: Bool, type: String?,explorerPackageType: ExplorerPackage?,freeTicketAvailed:Bool? = nil) {
+    private func getSections(for categoryID: Int, subCategoryId: Int?, baseUrl: String, isGuestUser: Bool, type: String?,explorerPackageType: ExplorerPackage?,freeTicketAvailed:Bool? = nil) {
         let getSectionssRequest = GetSectionsRequestModel(
             categoryId: categoryID,
+            subCategoryId: subCategoryId,
             isGuestUser: isGuestUser,
             type: type,
             explorerPackageType: explorerPackageType, freeTicketAvailed: freeTicketAvailed
