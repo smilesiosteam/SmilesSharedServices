@@ -13,7 +13,7 @@ public class SectionsViewModel: NSObject {
     
     // MARK: - INPUT. View event methods
     public enum Input {
-        case getSections(categoryID: Int, baseUrl: String, isGuestUser: Bool, type: String? = nil,explorerPackageType: ExplorerPackage? = nil, freeTicketAvailed: Bool)
+        case getSections(categoryID: Int, baseUrl: String, isGuestUser: Bool, type: String? = nil,explorerPackageType: ExplorerPackage? = nil, freeTicketAvailed: Bool? = nil)
     }
     
     public enum Output {
@@ -42,7 +42,7 @@ extension SectionsViewModel {
     }
     
     // Get All Sections
-    private func getSections(for categoryID: Int, baseUrl: String, isGuestUser: Bool, type: String?,explorerPackageType: ExplorerPackage?,freeTicketAvailed:Bool) {
+    private func getSections(for categoryID: Int, baseUrl: String, isGuestUser: Bool, type: String?,explorerPackageType: ExplorerPackage?,freeTicketAvailed:Bool? = nil) {
         let getSectionssRequest = GetSectionsRequestModel(
             categoryId: categoryID,
             isGuestUser: isGuestUser,
