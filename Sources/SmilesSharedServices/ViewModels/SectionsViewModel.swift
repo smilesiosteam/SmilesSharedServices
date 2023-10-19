@@ -13,7 +13,7 @@ public class SectionsViewModel: NSObject {
     
     // MARK: - INPUT. View event methods
     public enum Input {
-        case getSections(categoryID: Int, baseUrl: String, isGuestUser: Bool, type: String? = nil,explorerPackageType: ExplorerPackage? = nil, freeTicketAvailed: Bool? = false)
+        case getSections(categoryID: Int, baseUrl: String, isGuestUser: Bool, type: String? = nil,explorerPackageType: ExplorerPackage? = nil, freeTicketAvailed: Bool)
     }
     
     public enum Output {
@@ -35,7 +35,7 @@ extension SectionsViewModel {
         input.sink { [weak self] event in
             switch event {
             case .getSections(let categoryID, let baseUrl, let isGuestUser, let type, let explorerPackageType, let freeTicketAvailed):
-                self?.getSections(for: categoryID, baseUrl: baseUrl, isGuestUser: isGuestUser, type: type,explorerPackageType: explorerPackageType, freeTicketAvailed:freeTicketAvailed ?? false)
+                self?.getSections(for: categoryID, baseUrl: baseUrl, isGuestUser: isGuestUser, type: type,explorerPackageType: explorerPackageType, freeTicketAvailed:freeTicketAvailed)
             }
         }.store(in: &cancellables)
         return output.eraseToAnyPublisher()
