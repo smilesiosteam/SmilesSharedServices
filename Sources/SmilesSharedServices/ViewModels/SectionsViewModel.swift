@@ -13,7 +13,7 @@ public class SectionsViewModel: NSObject {
     
     // MARK: - INPUT. View event methods
     public enum Input {
-        case getSections(categoryID: Int, subCategoryId: Int? = nil, baseUrl: String, isGuestUser: Bool, type: String? = nil,explorerPackageType: ExplorerPackage? = nil, freeTicketAvailed: Bool? = nil)
+        case getSections(categoryID: Int, subCategoryId: Int? = nil, baseUrl: String, isGuestUser: Bool, type: String? = nil,explorerPackageType: ExplorerPackage? = nil, freeTicketAvailed: Bool? = nil,platinumLimitReached: Bool? = nil)
     }
     
     public enum Output {
@@ -34,21 +34,22 @@ extension SectionsViewModel {
         output = PassthroughSubject<Output, Never>()
         input.sink { [weak self] event in
             switch event {
-            case .getSections(let categoryID, let subcategoryId, let baseUrl, let isGuestUser, let type, let explorerPackageType, let freeTicketAvailed):
-                self?.getSections(for: categoryID, subCategoryId: subcategoryId, baseUrl: baseUrl, isGuestUser: isGuestUser, type: type,explorerPackageType: explorerPackageType, freeTicketAvailed:freeTicketAvailed)
+            case .getSections(let categoryID, let subcategoryId, let baseUrl, let isGuestUser, let type, let explorerPackageType, let freeTicketAvailed,let platinumLimitReached):
+                self?.getSections(for: categoryID, subCategoryId: subcategoryId, baseUrl: baseUrl, isGuestUser: isGuestUser, type: type,explorerPackageType: explorerPackageType, freeTicketAvailed:freeTicketAvailed,platinumLimitReached: platinumLimitReached)
             }
         }.store(in: &cancellables)
         return output.eraseToAnyPublisher()
     }
     
     // Get All Sections
-    private func getSections(for categoryID: Int, subCategoryId: Int?, baseUrl: String, isGuestUser: Bool, type: String?,explorerPackageType: ExplorerPackage?,freeTicketAvailed:Bool? = nil) {
+    private func getSections(for categoryID: Int, subCategoryId: Int?, baseUrl: String, isGuestUser: Bool, type: String?,explorerPackageType: ExplorerPackage?,freeTicketAvailed:Bool? = nil,platinumLimitReached: Bool? = nil) {
         let getSectionssRequest = GetSectionsRequestModel(
             categoryId: categoryID,
             subCategoryId: subCategoryId,
             isGuestUser: isGuestUser,
             type: type,
-            explorerPackageType: explorerPackageType, freeTicketAvailed: freeTicketAvailed
+            explorerPackageType: explorerPackageType, freeTicketAvailed: freeTicketAvailed,
+            platinumLimitReached: platinumLimitReached
         )
         
         let service = GetSectionsRepository(
