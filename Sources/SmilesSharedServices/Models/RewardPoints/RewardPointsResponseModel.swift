@@ -8,6 +8,7 @@
 import Foundation
 
 public struct RewardPointsResponseModel: Codable {
+    public let platinumLimitReached: Bool?
     public let extTransactionId: String?
     public let totalPoints : Int?
     public let nextExpiryDate : String?
@@ -84,6 +85,7 @@ public struct RewardPointsResponseModel: Codable {
     
     
     enum CodingKeys: String, CodingKey {
+        case platinumLimitReached
         case extTransactionId
         case totalPoints
         case nextExpiryDate
@@ -136,6 +138,7 @@ public struct RewardPointsResponseModel: Codable {
 
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
+        platinumLimitReached = try values.decodeIfPresent(Bool.self, forKey: .platinumLimitReached)
         extTransactionId = try values.decodeIfPresent(String.self, forKey: .extTransactionId)
         totalPoints = try values.decodeIfPresent(Int.self, forKey: .totalPoints)
         nextExpiryDate = try values.decodeIfPresent(String.self, forKey: .nextExpiryDate)
