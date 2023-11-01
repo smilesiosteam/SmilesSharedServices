@@ -33,6 +33,7 @@ public struct SectionDetailDO: Codable {
     public var backgroundImage: String?
     public var eventName: String?
     public var tag: String?
+    public var themeId: Int?
     
     public init() {}
     

@@ -19,8 +19,9 @@ public class GetSectionsRequestModel: SmilesBaseMainRequest {
     public var explorerPackageType: ExplorerPackage?
     public var freeTicketAvailed: Bool?
     public var platinumLimitReached: Bool?
+    public var themeId: Int?
     
-    public init(categoryId: Int?, subCategoryId: Int? = nil, isGuestUser: Bool?, type: String? = nil, explorerPackageType: ExplorerPackage? = nil,freeTicketAvailed:Bool? = nil,platinumLimitReached: Bool? = nil) {
+    public init(categoryId: Int?, subCategoryId: Int? = nil, isGuestUser: Bool?, type: String? = nil, explorerPackageType: ExplorerPackage? = nil,freeTicketAvailed:Bool? = nil,platinumLimitReached: Bool? = nil,themeId: Int? = nil) {
         super.init()
         self.categoryId = categoryId
         self.subCategoryId = subCategoryId
@@ -29,6 +30,7 @@ public class GetSectionsRequestModel: SmilesBaseMainRequest {
         self.explorerPackageType = explorerPackageType
         self.freeTicketAvailed = freeTicketAvailed
         self.platinumLimitReached = platinumLimitReached
+        self.themeId = themeId
     }
     
     public required init(from decoder: Decoder) throws {
@@ -45,6 +47,7 @@ public class GetSectionsRequestModel: SmilesBaseMainRequest {
         case explorerPackageType
         case freeTicketAvailed
         case platinumLimitReached
+        case themeId
     }
     
     public override func encode(to encoder: Encoder) throws {
@@ -57,5 +60,6 @@ public class GetSectionsRequestModel: SmilesBaseMainRequest {
         try container.encodeIfPresent(self.explorerPackageType, forKey: .explorerPackageType)
         try container.encodeIfPresent(self.freeTicketAvailed, forKey: .freeTicketAvailed)
         try container.encodeIfPresent(self.platinumLimitReached, forKey: .platinumLimitReached)
+        try container.encodeIfPresent(self.themeId, forKey: .platinumLimitReached)
     }
 }
