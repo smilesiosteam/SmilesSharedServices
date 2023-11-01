@@ -10,14 +10,14 @@ import Foundation
 import Combine
 import NetworkingLayer
 
-class TopBrandsViewModel: NSObject {
+public class TopBrandsViewModel: NSObject {
     
     // MARK: - INPUT. View event methods
-    enum Input {
+    public enum Input {
         case getTopBrands(categoryID: Int, menuItemType: String, baseUrl: String, isGuestUser: Bool)
     }
     
-    enum Output {
+    public enum Output {
         case fetchTopBrandsDidSucceed(response: GetTopBrandsResponseModel)
         case fetchTopBrandsDidFail(error: Error)
     }
@@ -30,7 +30,7 @@ class TopBrandsViewModel: NSObject {
 
 // MARK: - INPUT. View event methods
 extension TopBrandsViewModel {
-    func transform(input: AnyPublisher<Input, Never>) -> AnyPublisher<Output, Never> {
+    public func transform(input: AnyPublisher<Input, Never>) -> AnyPublisher<Output, Never> {
         output = PassthroughSubject<Output, Never>()
         input.sink { [weak self] event in
             switch event {
@@ -42,7 +42,7 @@ extension TopBrandsViewModel {
     }
     
     // Get All Top Brands
-    func getAllTopBrands(for categoryID: Int, menuItemType: String, baseUrl: String, isGuestUser: Bool) {
+    public func getAllTopBrands(for categoryID: Int, menuItemType: String, baseUrl: String, isGuestUser: Bool) {
         let getTopBrandsRequest = GetTopBrandsRequestModel(
             categoryId: categoryID,
             menuItemType: menuItemType,

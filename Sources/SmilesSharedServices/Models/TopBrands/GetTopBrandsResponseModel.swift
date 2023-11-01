@@ -8,17 +8,17 @@
 
 import Foundation
 
-struct GetTopBrandsResponseModel: Codable {
+public struct GetTopBrandsResponseModel: Codable {
     
-    let brands: [BrandDO]?
+    public let brands: [BrandDO]?
     
-    struct BrandDO: Codable {
+    public struct BrandDO: Codable {
         // MARK: - Model Variables
         
-        let id: String?
-        let title: String?
-        let iconUrl: String?
-        let redirectionUrl: String?
+        public let id: String?
+        public let title: String?
+        public let iconUrl: String?
+        public let redirectionUrl: String?
         
     }
 }

@@ -9,22 +9,22 @@
 import Foundation
 import SmilesBaseMainRequestManager
 
-class GetTopBrandsRequestModel: SmilesBaseMainRequest {
+public class GetTopBrandsRequestModel: SmilesBaseMainRequest {
     
     // MARK: - Model Variables
     
-    var categoryId: Int?
-    var isGuestUser: Bool?
-    var menuItemType: String?
+    public var categoryId: Int?
+    public var isGuestUser: Bool?
+    public var menuItemType: String?
         
-    init(categoryId: Int?, menuItemType: String?, isGuestUser: Bool?) {
+    public init(categoryId: Int?, menuItemType: String?, isGuestUser: Bool?) {
         super.init()
         self.categoryId = categoryId
         self.menuItemType = menuItemType
         self.isGuestUser = isGuestUser
     }
     
-    required init(from decoder: Decoder) throws {
+    public required init(from decoder: Decoder) throws {
         fatalError("init(from:) has not been implemented")
     }
     
@@ -36,7 +36,7 @@ class GetTopBrandsRequestModel: SmilesBaseMainRequest {
         case menuItemType
     }
     
-    override func encode(to encoder: Encoder) throws {
+    public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.categoryId, forKey: .categoryId)
