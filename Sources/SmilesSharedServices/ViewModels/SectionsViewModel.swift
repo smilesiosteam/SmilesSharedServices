@@ -49,7 +49,8 @@ extension SectionsViewModel {
             isGuestUser: isGuestUser,
             type: type,
             explorerPackageType: explorerPackageType, freeTicketAvailed: freeTicketAvailed,
-            platinumLimitReached: platinumLimitReached
+            platinumLimitReached: platinumLimitReached,
+            themeId: themeid
         )
         
         let service = GetSectionsRepository(
