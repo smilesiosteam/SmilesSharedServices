@@ -60,6 +60,6 @@ public class GetSectionsRequestModel: SmilesBaseMainRequest {
         try container.encodeIfPresent(self.explorerPackageType, forKey: .explorerPackageType)
         try container.encodeIfPresent(self.freeTicketAvailed, forKey: .freeTicketAvailed)
         try container.encodeIfPresent(self.platinumLimitReached, forKey: .platinumLimitReached)
-        try container.encodeIfPresent(self.themeId, forKey: .platinumLimitReached)
+        try container.encodeIfPresent(self.themeId, forKey: .themeId)
     }
 }
