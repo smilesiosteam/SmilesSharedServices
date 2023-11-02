@@ -11,18 +11,18 @@ import NetworkingLayer
 
 
 // if you wish you can have multiple services like this in a project
-enum TopBrandsRequestBuilder {
+public enum TopBrandsRequestBuilder {
     
     // organise all the end points here for clarity
     case getTopBrands(request: GetTopBrandsRequestModel)
     
     // gave a default timeout but can be different for each.
-    var requestTimeOut: Int {
+   public var requestTimeOut: Int {
         return 20
     }
     
     //specify the type of HTTP request
-    var httpMethod: SmilesHTTPMethod {
+    public var httpMethod: SmilesHTTPMethod {
         switch self {
         case .getTopBrands:
             return .POST
@@ -30,7 +30,7 @@ enum TopBrandsRequestBuilder {
     }
     
     // compose the NetworkRequest
-    func createRequest(baseUrl: String) -> NetworkRequest {
+   public func createRequest(baseUrl: String) -> NetworkRequest {
         var headers: [String: String] = [:]
 
         headers["Content-Type"] = "application/json"
