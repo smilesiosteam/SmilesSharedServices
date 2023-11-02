@@ -51,7 +51,7 @@ enum CollectionsRequestBuilder {
     func getURL(baseUrl: String) -> String {
         switch self {
         case .getCollections:
-            return baseUrl + "home/v1/get-collection-details"
+            return baseUrl + "home/v1/collections"
         }
     }
 }
