@@ -9,12 +9,13 @@
 import Foundation
 import Combine
 import NetworkingLayer
+import SmilesUtilities
 
 public class TopBrandsViewModel: NSObject {
     
     // MARK: - INPUT. View event methods
     public enum Input {
-        case getTopBrands(categoryID: Int, menuItemType: String, baseUrl: String, isGuestUser: Bool)
+        case getTopBrands(categoryID: Int, menuItemType: String)
     }
     
     public enum Output {
@@ -34,24 +35,24 @@ extension TopBrandsViewModel {
         output = PassthroughSubject<Output, Never>()
         input.sink { [weak self] event in
             switch event {
-            case .getTopBrands(let categoryID, let menuItemType, let baseUrl, let isGuestUser):
-                self?.getAllTopBrands(for: categoryID, menuItemType: menuItemType, baseUrl: baseUrl, isGuestUser: isGuestUser)
+            case .getTopBrands(let categoryID, let menuItemType):
+                self?.getAllTopBrands(for: categoryID, menuItemType: menuItemType)
             }
         }.store(in: &cancellables)
         return output.eraseToAnyPublisher()
     }
     
     // Get All Top Brands
-    public func getAllTopBrands(for categoryID: Int, menuItemType: String, baseUrl: String, isGuestUser: Bool) {
+    public func getAllTopBrands(for categoryID: Int, menuItemType: String) {
         let getTopBrandsRequest = GetTopBrandsRequestModel(
             categoryId: categoryID,
             menuItemType: menuItemType,
-            isGuestUser: isGuestUser
+            isGuestUser: AppCommonMethods.isGuestUser
         )
         
         let service = GetTopBrandsRepository(
             networkRequest: NetworkingLayerRequestable(requestTimeOut: 60),
-            baseUrl: baseUrl
+            baseUrl: AppCommonMethods.serviceBaseUrl
         )
         
         service.getTopBrandsService(request: getTopBrandsRequest)
