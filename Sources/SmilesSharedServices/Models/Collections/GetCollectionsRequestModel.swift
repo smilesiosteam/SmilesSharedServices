@@ -16,12 +16,14 @@ public class GetCollectionsRequestModel: SmilesBaseMainRequest {
    public var categoryId: Int?
    public var menuItemType: String?
    public var isGuestUser: Bool?
+    public var themeId: String?
     
-   public init(categoryId: Int?, menuItemType: String?, isGuestUser: Bool?) {
+    public init(categoryId: Int?, menuItemType: String?, isGuestUser: Bool?,themeId: String? = nil) {
         super.init()
         self.categoryId = categoryId
         self.menuItemType = menuItemType
         self.isGuestUser = isGuestUser
+        self.themeId = themeId
     }
     
    public required init(from decoder: Decoder) throws {
@@ -34,6 +36,7 @@ public class GetCollectionsRequestModel: SmilesBaseMainRequest {
         case categoryId
         case menuItemType
         case isGuestUser
+        case themeid
     }
     
    public override func encode(to encoder: Encoder) throws {
@@ -42,5 +45,6 @@ public class GetCollectionsRequestModel: SmilesBaseMainRequest {
         try container.encodeIfPresent(self.categoryId, forKey: .categoryId)
         try container.encodeIfPresent(self.menuItemType, forKey: .menuItemType)
         try container.encodeIfPresent(self.isGuestUser, forKey: .isGuestUser)
+       try container.encodeIfPresent(self.themeId, forKey: .themeid)
     }
 }

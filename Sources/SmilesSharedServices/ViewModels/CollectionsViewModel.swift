@@ -15,7 +15,7 @@ public class CollectionsViewModel: NSObject {
     
     // MARK: - INPUT. View event methods
    public enum Input {
-        case getCollections(categoryID: Int, menuItemType: String?)
+        case getCollections(categoryID: Int, menuItemType: String?, themeId: String? = nil)
     }
     
    public enum Output {
@@ -35,19 +35,20 @@ extension CollectionsViewModel {
         output = PassthroughSubject<Output, Never>()
         input.sink { [weak self] event in
             switch event {
-            case .getCollections(let categoryID, let menuItemType):
-                self?.getCollections(for: categoryID, menuItemType: menuItemType)
+            case .getCollections(let categoryID, let menuItemType,let themeid):
+                self?.getCollections(for: categoryID, menuItemType: menuItemType,themeId: themeid)
             }
         }.store(in: &cancellables)
         return output.eraseToAnyPublisher()
     }
     
     // Get All cuisines
-   public func getCollections(for categoryID: Int, menuItemType: String?) {
+   public func getCollections(for categoryID: Int, menuItemType: String?, themeId: String? = nil) {
         let getCuisinesRequest = GetCollectionsRequestModel(
             categoryId: categoryID,
             menuItemType: menuItemType,
-            isGuestUser: AppCommonMethods.isGuestUser
+            isGuestUser: AppCommonMethods.isGuestUser,
+            themeId: themeId
         )
         
         let service = GetCollectionsRepository(
