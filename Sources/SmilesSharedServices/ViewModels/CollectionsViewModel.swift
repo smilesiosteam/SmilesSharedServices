@@ -15,7 +15,7 @@ public class CollectionsViewModel: NSObject {
     
     // MARK: - INPUT. View event methods
    public enum Input {
-        case getCollections(categoryID: Int, menuItemType: String?, themeId: String? = nil)
+        case getCollections(categoryID: Int? = nil, menuItemType: String?, themeId: String? = nil)
     }
     
    public enum Output {
@@ -43,7 +43,7 @@ extension CollectionsViewModel {
     }
     
     // Get All cuisines
-   public func getCollections(for categoryID: Int, menuItemType: String?, themeId: String? = nil) {
+   public func getCollections(for categoryID: Int? = nil, menuItemType: String?, themeId: String? = nil) {
         let getCuisinesRequest = GetCollectionsRequestModel(
             categoryId: categoryID,
             menuItemType: menuItemType,
