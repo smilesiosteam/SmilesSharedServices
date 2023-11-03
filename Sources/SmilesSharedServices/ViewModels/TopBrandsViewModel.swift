@@ -15,7 +15,7 @@ public class TopBrandsViewModel: NSObject {
     
     // MARK: - INPUT. View event methods
     public enum Input {
-        case getTopBrands(categoryID: Int?, menuItemType: String?,themeId: String?)
+        case getTopBrands(categoryID: Int?, menuItemType: String?, themeId: String? = nil)
     }
     
     public enum Output {
