@@ -15,7 +15,7 @@ public class TopBrandsViewModel: NSObject {
     
     // MARK: - INPUT. View event methods
     public enum Input {
-        case getTopBrands(categoryID: Int, menuItemType: String?)
+        case getTopBrands(categoryID: Int?, menuItemType: String?,themeId: String?)
     }
     
     public enum Output {
@@ -35,19 +35,20 @@ extension TopBrandsViewModel {
         output = PassthroughSubject<Output, Never>()
         input.sink { [weak self] event in
             switch event {
-            case .getTopBrands(let categoryID, let menuItemType):
-                self?.getAllTopBrands(for: categoryID, menuItemType: menuItemType)
+            case .getTopBrands(let categoryID, let menuItemType,let themeid):
+                self?.getAllTopBrands(for: categoryID, menuItemType: menuItemType,themeid: themeid)
             }
         }.store(in: &cancellables)
         return output.eraseToAnyPublisher()
     }
     
     // Get All Top Brands
-    public func getAllTopBrands(for categoryID: Int, menuItemType: String?) {
+    public func getAllTopBrands(for categoryID: Int?, menuItemType: String?,themeid: String? = nil) {
         let getTopBrandsRequest = GetTopBrandsRequestModel(
             categoryId: categoryID,
             menuItemType: menuItemType,
-            isGuestUser: AppCommonMethods.isGuestUser
+            isGuestUser: AppCommonMethods.isGuestUser,
+            themeId: themeid
         )
         
         let service = GetTopBrandsRepository(
