@@ -36,7 +36,7 @@ public class GetCollectionsRequestModel: SmilesBaseMainRequest {
         case categoryId
         case menuItemType
         case isGuestUser
-        case themeid
+        case themeId
     }
     
    public override func encode(to encoder: Encoder) throws {
@@ -45,6 +45,6 @@ public class GetCollectionsRequestModel: SmilesBaseMainRequest {
         try container.encodeIfPresent(self.categoryId, forKey: .categoryId)
         try container.encodeIfPresent(self.menuItemType, forKey: .menuItemType)
         try container.encodeIfPresent(self.isGuestUser, forKey: .isGuestUser)
-       try container.encodeIfPresent(self.themeId, forKey: .themeid)
+       try container.encodeIfPresent(self.themeId, forKey: .themeId)
     }
 }
