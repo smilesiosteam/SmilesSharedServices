@@ -59,6 +59,7 @@ public struct RewardPointsResponseModel: Codable {
     public let explorerPackageType: ExplorerPackage?
     public let explorerVoucherCode: String?
     public let freeTicketAvailed:Bool?
+    public let eligibleSubscription: EligibleSubscriptionModel?
     public var profileImagePlaceholder: String{
         if gender == "F"{
             return "female"
@@ -134,6 +135,7 @@ public struct RewardPointsResponseModel: Codable {
         case mcfcWelcomeVideoUrl = "welcomeVideoUrl"
         case explorerSubscriptionStatus, explorerPackageType, explorerVoucherCode
         case freeTicketAvailed
+        case eligibleSubscription
     }
 
     public init(from decoder: Decoder) throws {
@@ -189,7 +191,8 @@ public struct RewardPointsResponseModel: Codable {
         explorerPackageType = ExplorerPackage(rawValue: try values.decodeIfPresent(String.self, forKey: .explorerPackageType)?.lowercased() ?? "")
         explorerVoucherCode = try values.decodeIfPresent(String.self, forKey: .explorerVoucherCode)
         freeTicketAvailed = try values.decodeIfPresent(Bool.self, forKey: .freeTicketAvailed)
-        
+        eligibleSubscription = try values.decodeIfPresent(EligibleSubscriptionModel.self, forKey: .eligibleSubscription)
+
     }
 }
 
