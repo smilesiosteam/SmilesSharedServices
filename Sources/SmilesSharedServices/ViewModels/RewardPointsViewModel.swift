@@ -15,7 +15,7 @@ public class RewardPointsViewModel: NSObject {
     
     // MARK: - INPUT. View event methods
     public enum Input {
-        case getRewardPoints(baseUrl: String)
+        case getRewardPoints(baseUrl: String,isRefreshRequired: Bool? = nil)
     }
     
     public enum Output {
@@ -34,15 +34,16 @@ extension RewardPointsViewModel {
         output = PassthroughSubject<Output, Never>()
         input.sink { [weak self] event in
             switch event {
-            case .getRewardPoints(let baseUrl):
-                self?.getRewardPoints(baseUrl: baseUrl)
+            case .getRewardPoints(let baseUrl,let isRefreshRequired):
+                self?.getRewardPoints(baseUrl: baseUrl,isRefreshRequired: isRefreshRequired)
             }
         }.store(in: &cancellables)
         return output.eraseToAnyPublisher()
     }
     
-    private func getRewardPoints(baseUrl: String) {
-        let rewardPointsRequest = RewardPointsRequestModel(isIntgParamRequired: false)
+    private func getRewardPoints(baseUrl: String, isRefreshRequired:Bool? = nil) {
+        
+        let rewardPointsRequest = RewardPointsRequestModel(isIntgParamRequired: isRefreshRequired ?? false)
         
         let service = GetRewardPointsRepository(
             networkRequest: NetworkingLayerRequestable(requestTimeOut: 60),
