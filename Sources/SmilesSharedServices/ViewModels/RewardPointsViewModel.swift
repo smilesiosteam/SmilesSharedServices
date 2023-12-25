@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 import NetworkingLayer
-import SmilesLocationHandler
 import SmilesUtilities
 
 public class RewardPointsViewModel: NSObject {
