@@ -13,7 +13,7 @@ import DeviceAppCheck
 import SmilesLanguageManager
 import SmilesUtilities
 
-class GetCountriesViewModel: NSObject {
+public class GetCountriesViewModel: NSObject {
     
     // MARK: -- Variables
     private var output: PassthroughSubject<Output, Never> = .init()
