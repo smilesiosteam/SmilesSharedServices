@@ -29,7 +29,7 @@ public class GetCountriesViewModel: NSObject {
 
 
 extension GetCountriesViewModel {
-    func transform(input: AnyPublisher<Input, Never>) -> AnyPublisher<Output, Never> {
+  public func transform(input: AnyPublisher<Input, Never>) -> AnyPublisher<Output, Never> {
         output = PassthroughSubject<Output, Never>()
         input.sink { [weak self] event in
             switch event {
@@ -56,11 +56,11 @@ extension GetCountriesViewModel {
 
 extension GetCountriesViewModel {
     
-    enum Input {
+ public   enum Input {
         case getCountriesList(lastModifiedDate: String ,firstCall: Bool)
     }
     
-    enum Output {
+  public  enum Output {
         
         case fetchCountriesDidSucceed(response: CountryListResponse)
         case fetchCountriesDidFail(error: NetworkError)
