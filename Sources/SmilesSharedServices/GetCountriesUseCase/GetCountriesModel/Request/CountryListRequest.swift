@@ -9,7 +9,7 @@ import Foundation
 import SmilesUtilities
 import SmilesBaseMainRequestManager
 
-public class CountryListRequest : SmilesBaseMainRequest   {
+public class CountryListRequest : Codable   {
     
     public var firstCallFlag : Bool?
     public var lastModifiedDate : String?
@@ -24,18 +24,18 @@ public class CountryListRequest : SmilesBaseMainRequest   {
         let values = try decoder.container(keyedBy: CountryListResponseCodingKeys.self)
         firstCallFlag = try values.decodeIfPresent(Bool.self, forKey: .countryList)
         lastModifiedDate = try values.decodeIfPresent(String.self, forKey: .lastModifiedDate)
-        try super.init(from: decoder)
+        //try super.init(from: decoder)
         
     }
     
     public init(firstCallFlag: Bool? = true, lastModifiedDate: String? = "") {
-        super.init()
+       // super.init()
         self.firstCallFlag = firstCallFlag
         self.lastModifiedDate = lastModifiedDate
     }
     
-    public override func encode(to encoder: Encoder) throws {
-        try super.encode(to: encoder)
+    public  func encode(to encoder: Encoder) throws {
+        //try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CountryListResponseCodingKeys.self)
         try container.encodeIfPresent(self.firstCallFlag, forKey: .countryList)
         try container.encodeIfPresent(self.lastModifiedDate, forKey: .lastModifiedDate)

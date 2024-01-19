@@ -12,7 +12,7 @@ import SmilesOffers
 import SmilesBaseMainRequestManager
 
 protocol GetCountriesRepositoriesServiceable {
-    func getCountriesListRequest(request: SmilesBaseMainRequest) -> AnyPublisher<CountryListResponse, NetworkError>
+    func getCountriesListRequest(request: CountryListRequest) -> AnyPublisher<CountryListResponse, NetworkError>
 }
 
 class GetCountriesRepository: GetCountriesRepositoriesServiceable {
@@ -24,7 +24,7 @@ class GetCountriesRepository: GetCountriesRepositoriesServiceable {
         self.networkRequest = networkRequest
     }
 
-    func getCountriesListRequest(request: SmilesBaseMainRequest) -> AnyPublisher<CountryListResponse, NetworkError> {
+    func getCountriesListRequest(request: CountryListRequest) -> AnyPublisher<CountryListResponse, NetworkError> {
         let endPoint = GetCountriesRequestBuilder.getCountriesRequest(request: request)
         let request = endPoint.createRequest(endPoint: .getCountries)
         return self.networkRequest.request(request)

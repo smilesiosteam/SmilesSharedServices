@@ -12,7 +12,7 @@ import SmilesBaseMainRequestManager
 
 enum GetCountriesRequestBuilder {
     
-    case getCountriesRequest(request: SmilesBaseMainRequest)
+    case getCountriesRequest(request: CountryListRequest)
     
     var requestTimeOut: Int {
         return 20
