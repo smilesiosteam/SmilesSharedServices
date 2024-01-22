@@ -17,21 +17,23 @@ public class GuestUserLoginRequestModel: SmilesBaseMainRequest {
 
         case isGuestUser
     }
-
+    
+    public init(isGuestUser: Bool? = nil) {
+        super.init()
+        self.isGuestUser = isGuestUser
+    }
     public required init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        isGuestUser = try values.decodeIfPresent(Bool.self, forKey: .isGuestUser)
-        try super.init(from: decoder)
+        fatalError("init(from:) has not been implemented")
+//        let values = try decoder.container(keyedBy: CodingKeys.self)
+//        isGuestUser = try values.decodeIfPresent(Bool.self, forKey: .isGuestUser)
+//        try super.init(from: decoder)
     }
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.isGuestUser, forKey: .isGuestUser)
     }
-    public init(isGuestUser: Bool?) {
-        super.init()
-        self.isGuestUser = isGuestUser
-    }
+    
 
     public func asDictionary(dictionary: [String: Any]) -> [String: Any] {
         let encoder = DictionaryEncoder()
