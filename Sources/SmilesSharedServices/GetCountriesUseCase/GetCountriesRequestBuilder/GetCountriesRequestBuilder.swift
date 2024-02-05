@@ -14,6 +14,7 @@ enum GetCountriesRequestBuilder {
     
     case getCountriesRequest(request: CountryListRequest)
     
+    
     var requestTimeOut: Int {
         return 20
     }

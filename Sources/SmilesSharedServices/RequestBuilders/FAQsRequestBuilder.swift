@@ -7,6 +7,7 @@
 
 import Foundation
 import NetworkingLayer
+import SmilesBaseMainRequestManager
 
 
 // if you wish you can have multiple services like this in a project
@@ -14,6 +15,7 @@ enum FAQsRequestBuilder {
     
     // organise all the end points here for clarity
     case getFaqsDetails(request: FAQsDetailsRequest)
+    case getFAQsList
     
     // gave a default timeout but can be different for each.
     var requestTimeOut: Int {
@@ -24,6 +26,8 @@ enum FAQsRequestBuilder {
     var httpMethod: SmilesHTTPMethod {
         switch self {
         case .getFaqsDetails:
+            return .POST
+        case .getFAQsList:
             return .POST
         }
     }
@@ -44,6 +48,8 @@ enum FAQsRequestBuilder {
         switch self {
         case .getFaqsDetails(let request):
             return request
+        case.getFAQsList:
+            return SmilesBaseMainRequest()
         }
     }
     
@@ -52,6 +58,8 @@ enum FAQsRequestBuilder {
         switch self {
         case .getFaqsDetails:
             return baseUrl + "faq/get-Faqs-details"
+        case .getFAQsList:
+            return baseUrl + "faq/get-Faqs"
         }
     }
 }

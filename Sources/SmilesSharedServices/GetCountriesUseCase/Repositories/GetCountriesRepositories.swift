@@ -8,11 +8,11 @@
 import Foundation
 import Combine
 import NetworkingLayer
-import SmilesOffers
 import SmilesBaseMainRequestManager
 
 protocol GetCountriesRepositoriesServiceable {
     func getCountriesListRequest(request: CountryListRequest) -> AnyPublisher<CountryListResponse, NetworkError>
+    
 }
 
 class GetCountriesRepository: GetCountriesRepositoriesServiceable {

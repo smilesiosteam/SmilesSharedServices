@@ -11,6 +11,7 @@ import NetworkingLayer
 
 protocol FAQsServiceable {
     func getFAQsService(request: FAQsDetailsRequest) -> AnyPublisher<FAQsDetailsResponse, NetworkError>
+    func getFAQsList() -> AnyPublisher<GetFAQResponse,NetworkError>
 }
 
 class GetFAQsRepository: FAQsServiceable {
@@ -32,5 +33,11 @@ class GetFAQsRepository: FAQsServiceable {
         return self.networkRequest.request(request)
         
     }
-    
+    func getFAQsList() -> AnyPublisher<GetFAQResponse,NetworkError> {
+        let endPoint = FAQsRequestBuilder.getFAQsList
+        let request = endPoint.createRequest(
+            baseUrl: self.baseUrl
+        )
+        return self.networkRequest.request(request)
+    }
 }
