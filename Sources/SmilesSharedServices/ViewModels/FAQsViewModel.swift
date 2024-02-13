@@ -18,7 +18,7 @@ public class FAQsViewModel: NSObject {
     
     public enum Output {
         case fetchFAQsDidSucceed(response: FAQsDetailsResponse)
-        case fetchFAQsDidFail(error: Error)
+        case fetchFAQsDidFail(error: NetworkError)
     }
     
     // MARK: -- Variables

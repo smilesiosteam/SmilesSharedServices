@@ -19,7 +19,7 @@ public class RewardPointsViewModel: NSObject {
     
     public enum Output {
         case fetchRewardPointsDidSucceed(response: RewardPointsResponseModel, shouldLogout: Bool?)
-        case fetchRewardPointsDidFail(error: Error)
+        case fetchRewardPointsDidFail(error: NetworkError)
     }
     
     // MARK: -- Variables

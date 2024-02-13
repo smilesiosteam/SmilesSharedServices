@@ -19,7 +19,7 @@ public class WishListViewModel: NSObject {
     
     public enum Output {
         case updateWishlistStatusDidSucceed(response: WishListResponseModel)
-        case updateWishlistDidFail(error: Error)
+        case updateWishlistDidFail(error: NetworkError)
     }
     
     // MARK: -- Variables

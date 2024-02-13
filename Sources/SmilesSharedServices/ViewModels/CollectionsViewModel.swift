@@ -20,7 +20,7 @@ public class CollectionsViewModel: NSObject {
     
    public enum Output {
         case fetchCollectionsDidSucceed(response: GetCollectionsResponseModel)
-        case fetchCollectionsDidFail(error: Error)
+        case fetchCollectionsDidFail(error: NetworkError)
     }
     
     // MARK: -- Variables

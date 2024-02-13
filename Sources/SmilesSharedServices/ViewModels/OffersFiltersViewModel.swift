@@ -20,7 +20,7 @@ public class OffersFiltersViewModel: NSObject {
     
     public enum Output {
         case fetchOffersFiltersDidSucceed(response: OffersFiltersResponseModel)
-        case fetchOffersFiltersDidFail(error: Error)
+        case fetchOffersFiltersDidFail(error: NetworkError)
     }
     
     // MARK: -- Variables

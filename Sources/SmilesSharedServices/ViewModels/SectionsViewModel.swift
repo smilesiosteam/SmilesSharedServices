@@ -18,7 +18,7 @@ public class SectionsViewModel: NSObject {
     
     public enum Output {
         case fetchSectionsDidSucceed(response: GetSectionsResponseModel)
-        case fetchSectionsDidFail(error: Error)
+        case fetchSectionsDidFail(error: NetworkError)
     }
     
     // MARK: -- Variables

@@ -20,7 +20,7 @@ public class TopBrandsViewModel: NSObject {
     
     public enum Output {
         case fetchTopBrandsDidSucceed(response: GetTopBrandsResponseModel)
-        case fetchTopBrandsDidFail(error: Error)
+        case fetchTopBrandsDidFail(error: NetworkError)
     }
     
     // MARK: -- Variables
