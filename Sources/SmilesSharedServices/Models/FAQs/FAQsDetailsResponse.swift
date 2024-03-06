@@ -29,6 +29,13 @@ public class FAQsDetailsResponse : BaseMainResponse {
     
 }
 
+extension FAQsDetailsResponse :Equatable {
+    public static func == (lhs: FAQsDetailsResponse, rhs: FAQsDetailsResponse) -> Bool {
+        return true
+    }
+    
+    
+}
 public class FaqsDetail : Codable {
     
     public let faqContent : String?
