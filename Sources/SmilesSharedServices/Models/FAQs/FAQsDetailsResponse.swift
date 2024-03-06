@@ -22,9 +22,10 @@ public class FAQsDetailsResponse : BaseMainResponse {
         try super.init(from: decoder)
     }
     
-    override init () {
-        
-    }
+    public override init() {
+            faqsDetails = nil
+            super.init()
+        }
     
 }
 
