@@ -22,6 +22,10 @@ public class FAQsDetailsResponse : BaseMainResponse {
         try super.init(from: decoder)
     }
     
+    override init () {
+        super.init()
+    }
+    
 }
 
 public class FaqsDetail : Codable {
