@@ -23,7 +23,7 @@ public class FAQsDetailsResponse : BaseMainResponse {
     }
     
     override init () {
-        super.init()
+        
     }
     
 }
