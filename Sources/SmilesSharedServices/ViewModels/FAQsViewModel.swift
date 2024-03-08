@@ -9,6 +9,10 @@ import Foundation
 import Combine
 import NetworkingLayer
 
+public protocol FAQsViewModelProtocol {
+    func transform(input: AnyPublisher<FAQsViewModel.Input, Never>) -> AnyPublisher<FAQsViewModel.Output, Never>
+}
+
 public class FAQsViewModel: NSObject {
     
     // MARK: - INPUT. View event methods
@@ -28,7 +32,7 @@ public class FAQsViewModel: NSObject {
 }
 
 // MARK: - INPUT. View event methods
-extension FAQsViewModel {
+extension FAQsViewModel: FAQsViewModelProtocol {
     
     public func transform(input: AnyPublisher<Input, Never>) -> AnyPublisher<Output, Never> {
         output = PassthroughSubject<Output, Never>()
